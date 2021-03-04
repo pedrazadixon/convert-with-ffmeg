@@ -1,20 +1,20 @@
-#define MyAppName "FFmpeg"
+#define MyAppName "Convert with FFmpeg"
 #define ContextItemName "Convert with FFmpeg"
 
 [Setup]
 AppName={#MyAppName}
-AppVersion=0.1
+AppVersion=0.2
 AppPublisher=Dixon Pedraza
 WizardStyle=modern
-DefaultDirName={autoappdata}\Dixon\FFmpeg
+DefaultDirName={autoappdata}\{#MyAppName}
 UninstallDisplayIcon={app}\icon.ico
-// Compression=lzma2
-Compression=none
+; Compression=none
+Compression=lzma2
 SolidCompression=yes
 OutputDir=userdocs:Inno Setup Examples Output
 PrivilegesRequired=admin
 
-DisableWelcomePage=yes
+DisableWelcomePage=no
 LicenseFile=License.txt
 
 [Files]
@@ -24,7 +24,6 @@ Source: "contexMenu.vbs"; DestDir: "{app}"
 Source: "icon.ico";       DestDir: "{app}"
 
 [Registry]
-Root: HKCR; Subkey: "SystemFileAssociations\.g729\Shell\{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: "SystemFileAssociations\.g729\Shell\{#ContextItemName}"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "SystemFileAssociations\.g729\Shell\{#ContextItemName}"; ValueType: string; ValueName: "Icon"; ValueData: "{app}\icon.ico"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "SystemFileAssociations\.g729\Shell\{#ContextItemName}\Command"; ValueType: string; ValueName: ""; ValueData: "wscript.exe ""{app}\contexMenu.vbs"" ""%1"""; Flags: uninsdeletekey
-
